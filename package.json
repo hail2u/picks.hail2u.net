@@ -1,0 +1,11 @@
+{
+  "name": "picks.hail2u.net",
+  "private": true,
+  "scripts": {
+    "build": "node index.js && git add index.html && git commit -m \"Rebuild\" && git checkout gh-pages && git checkout master -- index.html && git push -f origin gh-pages && git checkout master"
+  },
+  "devDependencies": {
+    "mustache": "^0.8.2",
+    "request": "^2.36.0"
+  }
+}

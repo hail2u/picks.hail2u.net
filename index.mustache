@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Picks - What I interested in</title>
+
+    <link rel="alternate" type="application/rdf+xml" href="https://feeds.pinboard.in/rss/u:hail2u/">
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Picks</h1>
+
+      <p>What I interested in.</p>
+    </header>
+
+    <ul>
+      {{#item}}
+      <li><time datetime="{{dt}}">{{dt}}</time><a class="{{#t}}{{.}} {{/t}}" href="{{u}}" title="{{d}}">{{d}}</a></li>
+      {{/item}}
+    </ul>
+
+    <footer>
+      <p>Collected by <a href="http://hail2u.net/about/">Kyo Nagashima</a>.</p>
+    </footer>
+  </body>
+</html>
