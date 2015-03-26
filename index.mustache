@@ -22,6 +22,33 @@
       {{/item}}
     </ul>
 
+    {{#archives}}
+    <section class="archives">
+      <h2>Archives</h2>
+
+      <ul>
+        {{#year}}
+        <li><a href="./{{.}}/"><time>{{.}}</time></a></li>
+        {{/year}}
+      </ul>
+    </section>
+    {{/archives}}
+
+    <section class="sources">
+      <h2>Sources</h2>
+
+      <ul>
+        <li><a href="https://dribbble.com/hail2u">Dribbble</a></li>
+        <li><a href="https://github.com/hail2u">GitHub</a></li>
+        <li><a href="http://instagram.com/hail2u_">Instagram</a></li>
+        <li><a href="https://pinboard.in/u:hail2u/">Pinboard</a></li>
+        <li><a href="http://www.pinterest.com/hail2u/">Pinterest</a></li>
+        <li><a href="https://www.readability.com/hail2u/">Readability</a></li>
+        <li><a href="https://soundcloud.com/hail2u_">SoundCloud</a></li>
+        <li><a href="https://vimeo.com/hail2u">Vimeo</a></li>
+      </ul>
+    </section>
+
     <footer>
       <p>Collected by <a href="http://hail2u.net/about/">Kyo Nagashima</a>.</p>
     </footer>
