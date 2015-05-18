@@ -2,6 +2,7 @@
   "name": "picks.hail2u.net",
   "devDependencies": {
     "mustache": "^0.8.2",
+    "pit-ro": "^0.0.1",
     "request": "^2.36.0"
   },
   "eslintConfig": {

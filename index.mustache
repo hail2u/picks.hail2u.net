@@ -4,21 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
 
-    <title>Picks - What I interested in</title>
+    <title>Picks - What I interested in{{#year}} on {{.}}{{/year}}.</title>
 
     <link rel="alternate" type="application/rdf+xml" href="https://feeds.pinboard.in/rss/u:hail2u/">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="{{path}}favicon.ico">
+    <link rel="stylesheet" href="{{path}}css/style.css">
   </head>
   <body>
     <header>
       <h1>Picks</h1>
 
-      <p>What I interested in.</p>
+      <p>What I interested in{{#year}} on {{.}}{{/year}}.</p>
     </header>
 
-    <ul>
+    <ul class="bookmarks">
       {{#item}}
-      <li><time datetime="{{dt}}">{{dt}}</time><a class="{{#t}}{{.}} {{/t}}" href="{{u}}" title="{{d}}">{{d}}</a></li>
+      <li><time title="{{time}}" datetime="{{time}}">{{date}}</time><a class=" {{tags}}" href="{{href}}" title="{{description}}&#x0a;{{extended}}">{{description}}</a></li>
       {{/item}}
     </ul>
 
