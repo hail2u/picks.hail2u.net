@@ -7,9 +7,8 @@ var mustache = require("mustache");
 var pit = require("pit-ro");
 var request = require("request");
 
-var config;
-var data;
-var endpoint = "https://api.pinboard.in/v1/posts/all?format=json&auth_token=";
+var config = pit.get("pinboard.in");
+var data = JSON.parse(fs.readFileSync("index.json", "utf-8"));
 var entityMap = {
   "&": "&amp;",
   "<": "&lt;",
@@ -18,7 +17,6 @@ var entityMap = {
   "'": "&#39;"
 };
 var force = false;
-var from;
 var monthNames = [
   "Jan",
   "Feb",
@@ -33,7 +31,10 @@ var monthNames = [
   "Nov",
   "Dec"
 ];
-var url;
+var qs = {
+  format: "json"
+};
+var url = "https://api.pinboard.in/v1/posts/all";
 
 mustache.escape = function (string) {
   return String(string).replace(/[&<>""]/g, function (s) {
@@ -45,11 +46,12 @@ if (process.argv.length === 3 && process.argv[2] === "--force") {
   force = true;
 }
 
-data = JSON.parse(fs.readFileSync("index.json", "utf-8"));
-from = data.item[0].time;
-config = pit.get("pinboard.in");
-url = endpoint + config.username + ":" + config.token + "&fromdt=" + from;
-request(url, function (error, response, body) {
+qs.fromdt = data.item[0].time;
+qs.auth_token = config.username + ":" + config.token;
+request.get({
+  qs: qs,
+  uri: url
+}, function (error, response, body) {
   var newData;
   var template;
 
