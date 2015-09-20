@@ -104,7 +104,7 @@ request.get({
     var d = data[year];
     d.path = "../";
     d.year = year;
-    year = "build/" + year;
+    year = "dist/" + year;
 
     try {
       fs.mkdirSync(year);
@@ -114,6 +114,6 @@ request.get({
 
     fs.writeFileSync(year + "/index.html", mustache.render(template, d));
   });
-  fs.writeFileSync("build/index.html", mustache.render(template, data));
+  fs.writeFileSync("dist/index.html", mustache.render(template, data));
   console.log("");
 });
