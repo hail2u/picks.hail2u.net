@@ -106,8 +106,10 @@ request.get({
     d.year = year;
     year = "build/" + year;
 
-    if (!fs.existsSync(year) || !fs.statSync(year).isDirectory()) {
+    try {
       fs.mkdirSync(year);
+    } catch (e) {
+      console.error('Directory "' + year + '" found.');
     }
 
     fs.writeFileSync(year + "/index.html", mustache.render(template, d));
