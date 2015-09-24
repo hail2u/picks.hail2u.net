@@ -37,7 +37,7 @@ var qs = {
 var url = "https://api.pinboard.in/v1/posts/all";
 
 mustache.escape = function (string) {
-  return String(string).replace(/[&<>""]/g, function (s) {
+  return String(string).replace(/[&<>"']/g, function (s) {
     return entityMap[s];
   });
 };
