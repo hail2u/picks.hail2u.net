@@ -60,13 +60,13 @@ request.get({
   }
 
   if (response.statusCode !== 200) {
-    throw new Error("Server returned " + response.statusCode + ".");
+    throw new Error(response.statusCode + " returned by server");
   }
 
   newData = JSON.parse(body);
 
   if (!force && newData.length === 0) {
-    throw new Error("There is no new bookmarks.");
+    throw new Error("No new bookmark found");
   }
 
   newData.reverse().forEach(function (item) {
@@ -109,7 +109,7 @@ request.get({
     try {
       fs.mkdirSync(year);
     } catch (e) {
-      console.error('Directory "' + year + '" found.');
+      console.error('Directory "' + year + '" found');
     }
 
     fs.writeFileSync(year + "/index.html", mustache.render(template, d));
