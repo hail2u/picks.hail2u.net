@@ -63,17 +63,19 @@ request.get({
     throw new Error(response.statusCode + " returned by server");
   }
 
-  newData = JSON.parse(body);
+  newData = JSON.parse(body).filter(function (item) {
+    if (item.toread === "yes") {
+      return false;
+    }
+
+    return true;
+  });
 
   if (!force && newData.length === 0) {
     throw new Error("No new bookmark found");
   }
 
   newData.reverse().forEach(function (item) {
-    if (item.toread === "yes") {
-      return;
-    }
-
     console.log("New bookmark: " + item.href);
     data.item.unshift(item);
   });
