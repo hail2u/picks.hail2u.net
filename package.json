@@ -1,5 +1,7 @@
 {
   "name": "picks.hail2u.net",
+  "description": "What I interested in.",
+  "author": "Kyo Nagashima <hail2u@gmail.com> (https://kyonagashima.com/)",
   "devDependencies": {
     "mustache": "^0.8.2",
     "pit-ro": "^0.0.1",
@@ -10,7 +12,12 @@
       "node": true
     }
   },
+  "homepage": "https://picks.hail2u.net/",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hail2u/picks.hail2u.net.git"
+  },
   "scripts": {
     "build": "node index.js",
     "deploy": "cd dist && git push origin gh-pages",
