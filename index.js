@@ -60,7 +60,8 @@ request.get({
   }
 
   if (response.statusCode !== 200) {
-    throw new Error(response.statusCode + " returned by server");
+    throw new Error("Pinboard API server returned an error: " +
+      response.statusCode);
   }
 
   newData = JSON.parse(body).filter(function (item) {
@@ -74,10 +75,11 @@ request.get({
   if (force) {
     data.item = newData.slice(0);
     newData = [];
+    console.log('Cache file "index.json" is rebuilt');
   }
 
   if (!force && newData.length === 0) {
-    throw new Error("No new bookmark found");
+    throw new Error("No new bookmarks");
   }
 
   newData.reverse().forEach(function (item) {
@@ -116,16 +118,16 @@ request.get({
     var d = data[year];
     d.path = "../";
     d.year = year;
-    year = "dist/" + year;
+    year = "dist/" + year + "/";
 
     try {
       fs.mkdirSync(year);
+      console.error('Directory "' + year + '" is created');
     } catch (e) {
-      console.error('Directory "' + year + '" found');
+      // Noop
     }
 
-    fs.writeFileSync(year + "/index.html", mustache.render(template, d));
+    fs.writeFileSync(year + "index.html", mustache.render(template, d));
   });
   fs.writeFileSync("dist/index.html", mustache.render(template, data));
-  console.log("");
 });
