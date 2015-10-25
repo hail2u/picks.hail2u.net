@@ -8,7 +8,9 @@ var pit = require("pit-ro");
 var request = require("request");
 
 var config = pit.get("pinboard.in");
-var data = JSON.parse(fs.readFileSync("index.json", "utf-8"));
+var data = {
+  item: []
+};
 var entityMap = {
   "&": "&amp;",
   "<": "&lt;",
@@ -36,17 +38,15 @@ var qs = {
 };
 var url = "https://api.pinboard.in/v1/posts/all";
 
-mustache.escape = function (string) {
-  return String(string).replace(/[&<>"']/g, function (s) {
-    return entityMap[s];
-  });
-};
-
 if (process.argv.length === 3 && process.argv[2] === "--force") {
   force = true;
 }
 
-qs.fromdt = data.item[0].time;
+if (!force) {
+  data = JSON.parse(fs.readFileSync("index.json", "utf-8"));
+  qs.fromdt = data.item[0].time;
+}
+
 qs.auth_token = config.username + ":" + config.token;
 request.get({
   qs: qs,
@@ -70,6 +70,11 @@ request.get({
 
     return true;
   });
+
+  if (force) {
+    data.item = newData.slice(0);
+    newData = [];
+  }
 
   if (!force && newData.length === 0) {
     throw new Error("No new bookmark found");
@@ -101,6 +106,11 @@ request.get({
   data.item = data.item.slice(0, 50);
   data.path = "./";
   template = fs.readFileSync("index.mustache", "utf-8");
+  mustache.escape = function (string) {
+    return String(string).replace(/[&<>"']/g, function (s) {
+      return entityMap[s];
+    });
+  };
   mustache.parse(template);
   data.archives.year.forEach(function (year) {
     var d = data[year];
