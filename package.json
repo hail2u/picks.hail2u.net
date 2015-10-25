@@ -21,7 +21,6 @@
   "scripts": {
     "build": "node index.js",
     "deploy": "cd dist && git push origin gh-pages",
-    "postbuild": "git commit --all -m \"Build\" && git push origin master",
     "predeploy": "npm run build && cd dist && git add --all && git commit -m \"Build\""
   }
 }
