@@ -107,7 +107,7 @@ request.get({
   });
   data.item = data.item.slice(0, 50);
   data.path = "./";
-  template = fs.readFileSync("index.mustache", "utf-8");
+  template = fs.readFileSync("src/index.mustache", "utf-8");
   mustache.escape = function (string) {
     return String(string).replace(/[&<>"']/g, function (s) {
       return entityMap[s];
