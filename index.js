@@ -2,7 +2,7 @@
 
 "use strict";
 
-var fs = require("fs");
+var fs = require("fs-extra");
 var mustache = require("mustache");
 var pit = require("pit-ro");
 var request = require("request");
