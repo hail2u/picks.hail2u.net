@@ -8,11 +8,6 @@
     "pit-ro": "^0.0.1",
     "request": "^2.36.0"
   },
-  "eslintConfig": {
-    "env": {
-      "node": true
-    }
-  },
   "homepage": "https://picks.hail2u.net/",
   "private": true,
   "repository": {
