@@ -43,7 +43,7 @@ if (process.argv.length === 3 && process.argv[2] === "--force") {
 }
 
 if (!force) {
-  data = JSON.parse(fs.readFileSync("index.json", "utf-8"));
+  data = fs.readJsonSync("index.json");
   qs.fromdt = data.item[0].time;
 }
 
@@ -86,7 +86,7 @@ request.get({
     console.log("New bookmark: " + item.href);
     data.item.unshift(item);
   });
-  fs.writeFileSync("index.json", JSON.stringify(data, null, 2));
+  fs.writeJsonSync("index.json", data);
   data.archives = {
     year: []
   };
@@ -118,16 +118,10 @@ request.get({
     var d = data[year];
     d.path = "../";
     d.year = year;
-    year = "dist/" + year + "/";
-
-    try {
-      fs.mkdirSync(year);
-      console.error('Directory "' + year + '" is created');
-    } catch (e) {
-      // Noop
-    }
-
-    fs.writeFileSync(year + "index.html", mustache.render(template, d));
+    fs.outputFileSync(
+      "dist/" + year + "/index.html",
+      mustache.render(template, d)
+    );
   });
-  fs.writeFileSync("dist/index.html", mustache.render(template, data));
+  fs.outputFileSync("dist/index.html", mustache.render(template, data));
 });
