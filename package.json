@@ -4,7 +4,7 @@
   "author": "Kyo Nagashima <hail2u@gmail.com> (https://kyonagashima.com/)",
   "devDependencies": {
     "fs-extra": "^0.26.0",
-    "mustache": "^0.8.2",
+    "mustache": "^2.2.1",
     "pit-ro": "^0.0.1",
     "request": "^2.36.0"
   },
