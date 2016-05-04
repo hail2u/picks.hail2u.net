@@ -1,0 +1,237 @@
+body {
+  margin: 1em;
+  padding: 0;
+  line-height: 1.6;
+  color: #999;
+  background-color: #fff;
+  font-family: "Helvetica Neue", "Calibri", sans-serif;
+}
+
+a {
+  color: #000;
+}
+
+header,
+.bookmarks li,
+.archives,
+.sources,
+footer {
+  margin: 0 auto;
+  max-width: 40em;
+}
+
+header {
+  position: relative;
+  white-space: nowrap;
+}
+
+header h1,
+.bookmarks li time,
+.archives h2,
+.sources h2 {
+  font-family: "Hoefler Text", "Constantia", serif;
+}
+
+header h1,
+.archives h2,
+.sources h2 {
+  margin-bottom: 0;
+  font-size: 100%;
+}
+
+header h1 {
+  margin-top: 0;
+  position: absolute;
+  left: 2em;
+}
+
+header p,
+.bookmarks li a,
+.archives h2,
+.archives ul,
+.sources h2,
+.sources ul,
+footer p {
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 1.25em;
+}
+
+header p,
+.bookmarks li a,
+.archives h2,
+.sources h2,
+footer p {
+  padding-left: 1.5em;
+}
+
+header p {
+  margin-top: 4em;
+  margin-bottom: 4em;
+  background-image: url("../img/logo.svg");
+  text-align: right;
+}
+
+.bookmarks,
+.archives ul,
+.sources ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.bookmarks li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.bookmarks li time {
+  margin-top: 1em;
+  display: block;
+}
+
+.bookmarks li a {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  max-width: 100%;
+  overflow-x: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  background-image: url("../img/pinboard.svg");
+}
+
+.bookmarks .dribbble {
+  background-image: url("../img/dribbble.svg");
+}
+
+.bookmarks .github {
+  background-image: url("../img/github.svg");
+}
+
+.bookmarks .instagram {
+  background-image: url("../img/instagram.svg");
+}
+
+.bookmarks .instapaper {
+  background-image: url("../img/instapaper.svg");
+}
+
+.bookmarks .pinterest {
+  background-image: url("../img/pinterest.svg");
+}
+
+.bookmarks .readability {
+  background-image: url("../img/readability.svg");
+}
+
+.bookmarks .soundcloud {
+  background-image: url("../img/soundcloud.svg");
+}
+
+.bookmarks .vimeo {
+  background-image: url("../img/vimeo.svg");
+}
+
+.archives,
+.sources {
+  position: relative;
+}
+
+.archives h2,
+.sources h2 {
+  margin-top: 3em;
+}
+
+.archives h2 {
+  background-image: url("../img/clock.svg");
+}
+
+.archives li,
+.sources li {
+  margin-top: 1em;
+  display: inline-block;
+}
+
+.sources h2 {
+  background-image: url("../img/share.svg");
+}
+
+footer p {
+  margin-top: 4em;
+  margin-bottom: 2em;
+  background-image: url("../img/profile.svg");
+}
+
+@media (min-width: 68em) {
+  header,
+  .bookmarks li,
+  .archives,
+  .sources,
+  footer {
+    max-width: 52em;
+  }
+
+  header h1 {
+    left: auto;
+    right: 100%;
+  }
+
+  header p,
+  .bookmarks li a,
+  .archives ul,
+  .sources ul,
+  footer p {
+    padding-left: 3em;
+    background-position: 0.75em center;
+    background-size: 1.5em;
+  }
+
+  header p,
+  .archives ul,
+  .sources ul {
+    text-align: left;
+  }
+
+  header p {
+    margin-top: 6em;
+  }
+
+  .bookmarks li {
+    margin-top: 1em;
+  }
+
+  .bookmarks li time {
+    margin-top: 0em;
+    position: absolute;
+    right: 100%;
+  }
+
+  .archives h2,
+  .sources h2 {
+    margin-top: 0;
+    padding-left: 0;
+    position: absolute;
+    right: 100%;
+    background-image: none;
+  }
+
+  .archives ul,
+  .sources ul {
+    margin-top: 4em;
+  }
+
+  .archives ul {
+    background-image: url("../img/clock.svg");
+  }
+
+  .archives li,
+  .sources li {
+    margin-top: 0;
+  }
+
+  .sources ul {
+    background-image: url("../img/share.svg");
+  }
+}
