@@ -15,8 +15,11 @@
     "url": "https://github.com/hail2u/picks.hail2u.net.git"
   },
   "scripts": {
-    "build": "node index.js",
+    "build": "node index.js && npm run css && npm run img && npm run static",
     "deploy": "cd dist && git push origin gh-pages",
-    "predeploy": "npm run build && cd dist && git add --all && git commit -m \"Build\""
+    "css": "cp -aux src/css/* dist/css/",
+    "img": "cp -aux src/img/* dist/img/",
+    "predeploy": "npm run build && cd dist && git add --all && git commit -m \"Build\"",
+    "static": "cp src/.nojekyll src/CNAME src/favicon.ico dist/"
   }
 }
