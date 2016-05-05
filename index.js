@@ -46,7 +46,7 @@ if (!force) {
   try {
     data = fs.readJsonSync("index.json");
     qs.fromdt = data.item[0].time;
-  } catch () {
+  } catch (e) {
     force = true;
   }
 }
@@ -55,17 +55,16 @@ qs.auth_token = config.username + ":" + config.token;
 request.get({
   qs: qs,
   uri: url
-}, function (error, response, body) {
+}, function (err, res, body) {
   var newData;
   var template;
 
-  if (error) {
-    throw error;
+  if (err) {
+    throw err;
   }
 
-  if (response.statusCode !== 200) {
-    throw new Error("Pinboard API server returned an error: " +
-      response.statusCode);
+  if (res.statusCode !== 200) {
+    throw new Error("Pinboard API server returned an error: " + res.statusCode);
   }
 
   newData = JSON.parse(body).filter(function (item) {
@@ -79,17 +78,13 @@ request.get({
   if (force) {
     data.item = newData.slice(0);
     newData = [];
-    console.log('Cache file "index.json" is rebuilt');
   }
 
   if (!force && newData.length === 0) {
-    console.log("No new bookmarks");
-
     return;
   }
 
   newData.reverse().forEach(function (item) {
-    console.log("New bookmark: " + item.href);
     data.item.unshift(item);
   });
   fs.writeJsonSync("index.json", data);
@@ -99,6 +94,7 @@ request.get({
   data.item.forEach(function (item) {
     var date = new Date(item.time);
     var year = date.getFullYear();
+
     item.date = monthNames[date.getMonth()] + " " + date.getDate() + ", " +
       year;
 
@@ -113,7 +109,7 @@ request.get({
   });
   data.item = data.item.slice(0, 50);
   data.path = "./";
-  template = fs.readFileSync("src/index.mustache", "utf-8");
+  template = fs.readFileSync("src/index.mustache", "utf8");
   mustache.escape = function (string) {
     return String(string).replace(/[&<>"']/g, function (s) {
       return entityMap[s];
@@ -122,6 +118,7 @@ request.get({
   mustache.parse(template);
   data.archives.year.forEach(function (year) {
     var d = data[year];
+
     d.path = "../";
     d.year = year;
     fs.outputFileSync(
