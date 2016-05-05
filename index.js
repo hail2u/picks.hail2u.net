@@ -43,8 +43,12 @@ if (process.argv.length === 3 && process.argv[2] === "--force") {
 }
 
 if (!force) {
-  data = fs.readJsonSync("index.json");
-  qs.fromdt = data.item[0].time;
+  try {
+    data = fs.readJsonSync("index.json");
+    qs.fromdt = data.item[0].time;
+  } catch () {
+    force = true;
+  }
 }
 
 qs.auth_token = config.username + ":" + config.token;
