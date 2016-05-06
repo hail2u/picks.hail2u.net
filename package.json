@@ -1,7 +1,7 @@
 {
   "name": "picks.hail2u.net",
   "description": "What I interested in.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "author": "Kyo Nagashima <hail2u@gmail.com> (https://kyonagashima.com/)",
   "devDependencies": {
     "fs-extra": "^0.30.0",
