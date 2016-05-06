@@ -19,8 +19,8 @@
     "css": "cp -aux src/css/* dist/css/",
     "deploy": "cd dist && git push origin gh-pages",
     "img": "cp -aux src/img/* dist/img/",
-    "prebuild": "npm run css && npm run img && npm run static",
-    "predeploy": "npm run build",
+    "postbuild": "npm run deploy",
+    "rebuild": "npm run css && npm run img && npm run static && npm run build",
     "static": "cp src/.nojekyll src/CNAME src/favicon.ico dist/"
   }
 }
