@@ -1,6 +1,7 @@
 {
   "name": "picks.hail2u.net",
   "description": "What I interested in.",
+  "version": "3.0.2",
   "author": "Kyo Nagashima <hail2u@gmail.com> (https://kyonagashima.com/)",
   "devDependencies": {
     "fs-extra": "^0.30.0",
@@ -9,6 +10,7 @@
     "request": "^2.36.0"
   },
   "homepage": "https://picks.hail2u.net/",
+  "main": "index.js",
   "private": true,
   "repository": {
     "type": "git",
