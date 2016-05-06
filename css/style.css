@@ -28,7 +28,8 @@ header {
 header h1,
 .bookmarks li time,
 .archives h2,
-.sources h2 {
+.sources h2,
+footer:before {
   font-family: "Hoefler Text", "Constantia", serif;
 }
 
@@ -135,7 +136,8 @@ header p {
 }
 
 .archives,
-.sources {
+.sources,
+footer {
   position: relative;
 }
 
@@ -209,7 +211,8 @@ footer p {
   }
 
   .archives h2,
-  .sources h2 {
+  .sources h2,
+  footer:before {
     margin-top: 0;
     padding-left: 0;
     position: absolute;
@@ -233,5 +236,10 @@ footer p {
 
   .sources ul {
     background-image: url("../img/share.svg");
+  }
+
+  footer:before {
+    content: "By";
+    display: block;
   }
 }
