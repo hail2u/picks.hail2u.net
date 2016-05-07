@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta content="width=device-width" name="viewport">
 
     <title>Picks - What I interested in{{#year}} on {{.}}{{/year}}.</title>
 
-    <link rel="alternate" type="application/rdf+xml" href="https://feeds.pinboard.in/rss/u:hail2u/">
-    <link rel="icon" href="{{path}}favicon.ico">
-    <link rel="stylesheet" href="{{path}}css/style.css">
+    <link href="https://feeds.pinboard.in/rss/u:hail2u/" rel="alternate" type="application/rdf+xml">
+    <link href="{{path}}css/style.css" rel="stylesheet">
   </head>
+
   <body>
     <header>
       <h1>Picks</h1>
@@ -19,27 +19,27 @@
 
     <ul class="bookmarks">
       {{#item}}
-      <li><time title="{{time}}" datetime="{{time}}">{{date}}</time><a class=" {{tags}}" href="{{href}}" title="{{description}}&#x0a;{{extended}}">{{description}}</a></li>
+        <li><time datetime="{{time}}" title="{{time}}">{{date}}</time><a class=" {{tags}}" href="{{href}}" title="{{description}}&#x0a;{{extended}}">{{description}}</a></li>
       {{/item}}
     </ul>
 
     {{#archives}}
-    <section class="archives">
-      <h2>Archives</h2>
+      <section class="archives">
+        <h2>Archives</h2>
 
-      <ul>
-        {{#year}}
-        <li><a href="./{{.}}/"><time>{{.}}</time></a></li>
-        {{/year}}
-      </ul>
-    </section>
+        <ul>
+          {{#year}}
+            <li><a href="{{path}}{{.}}/"><time>{{.}}</time></a></li>
+          {{/year}}
+        </ul>
+      </section>
     {{/archives}}
 
     <section class="sources">
       <h2>Sources</h2>
 
       <ul>
-        <li><a href="https://dribbble.com/hail2u">Dribbble</a></li>
+        <li><a href="https://www.behance.net/hail2u">Behence</a></li>
         <li><a href="https://github.com/hail2u">GitHub</a></li>
         <li><a href="https://instagram.com/hail2u_">Instagram</a></li>
         <li><a href="https://instapaper.com/p/hail2u">Instapaper</a></li>
