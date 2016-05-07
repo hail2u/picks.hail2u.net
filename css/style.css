@@ -103,6 +103,10 @@ header p {
   background-image: url("../img/pinboard.svg");
 }
 
+.bookmarks .behance {
+  background-image: url("../img/behance.svg");
+}
+
 .bookmarks .dribbble {
   background-image: url("../img/dribbble.svg");
 }
