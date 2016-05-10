@@ -107,7 +107,7 @@ request.get({
 
     data[year].item.push(item);
   });
-  data.item = data.item.slice(0, 50);
+  data.item = data.item.slice(0, 20);
   data.path = "./";
   template = fs.readFileSync("src/index.mustache", "utf8");
   mustache.escape = function (string) {
