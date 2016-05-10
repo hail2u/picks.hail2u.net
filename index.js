@@ -19,20 +19,8 @@ var entityMap = {
   "'": "&#39;"
 };
 var force = false;
-var monthNames = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
-];
+var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+  "Oct", "Nov", "Dec"];
 var qs = {
   format: "json"
 };
