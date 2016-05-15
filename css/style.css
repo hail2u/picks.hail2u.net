@@ -95,10 +95,6 @@ header p {
   background-image: url("../img/pinboard.svg");
 }
 
-.bookmarks .behance {
-  background-image: url("../img/behance.svg");
-}
-
 .bookmarks .github {
   background-image: url("../img/github.svg");
 }
@@ -107,24 +103,8 @@ header p {
   background-image: url("../img/instagram.svg");
 }
 
-.bookmarks .instapaper {
-  background-image: url("../img/instapaper.svg");
-}
-
 .bookmarks .pinterest {
   background-image: url("../img/pinterest.svg");
-}
-
-.bookmarks .readability {
-  background-image: url("../img/readability.svg");
-}
-
-.bookmarks .soundcloud {
-  background-image: url("../img/soundcloud.svg");
-}
-
-.bookmarks .vimeo {
-  background-image: url("../img/vimeo.svg");
 }
 
 .archives,
