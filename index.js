@@ -7,42 +7,49 @@ var mustache = require("mustache");
 var pit = require("pit-ro");
 var request = require("request");
 
-var config = pit.get("pinboard.in");
+var config = {
+  cache: "index.json",
+  dest: "dist/",
+  entityMap: {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  },
+  force: false,
+  html: "index.html",
+  monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+    "Oct", "Nov", "Dec"],
+  qs: {
+    format: "json"
+  },
+  template: "src/index.mustache",
+  url: "https://api.pinboard.in/v1/posts/all"
+};
 var data = {
   item: []
 };
-var entityMap = {
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-  "'": "&#39;"
-};
-var force = false;
-var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
-  "Oct", "Nov", "Dec"];
-var qs = {
-  format: "json"
-};
-var url = "https://api.pinboard.in/v1/posts/all";
+
+Object.merge(config, pit.get("pinboard.in"));
 
 if (process.argv.length === 3 && process.argv[2] === "--force") {
-  force = true;
+  config.force = true;
 }
 
-if (!force) {
+if (!config.force) {
   try {
-    data = fs.readJsonSync("index.json");
-    qs.fromdt = data.item[0].time;
+    data = fs.readJsonSync(config.cache);
+    config.qs.fromdt = data.item[0].time;
   } catch (e) {
-    force = true;
+    config.force = true;
   }
 }
 
-qs.auth_token = config.username + ":" + config.token;
+config.qs.auth_token = config.username + ":" + config.token;
 request.get({
-  qs: qs,
-  uri: url
+  qs: config.qs,
+  uri: config.url
 }, function (err, res, body) {
   var newData;
   var template;
@@ -63,19 +70,19 @@ request.get({
     return true;
   });
 
-  if (force) {
+  if (config.force) {
     data.item = newData.slice(0);
     newData = [];
   }
 
-  if (!force && newData.length === 0) {
+  if (!config.force && newData.length === 0) {
     return;
   }
 
   newData.reverse().forEach(function (item) {
     data.item.unshift(item);
   });
-  fs.writeJsonSync("index.json", data);
+  fs.writeJsonSync(config.cache, data);
   data.archives = {
     year: []
   };
@@ -83,8 +90,8 @@ request.get({
     var date = new Date(item.time);
     var year = date.getFullYear();
 
-    item.date = monthNames[date.getMonth()] + " " + date.getDate() + ", " +
-      year;
+    item.date = config.monthNames[date.getMonth()] + " " + date.getDate() +
+      ", " + year;
 
     if (!data[year]) {
       data.archives.year.push(year.toString());
@@ -97,10 +104,10 @@ request.get({
   });
   data.item = data.item.slice(0, 20);
   data.path = "./";
-  template = fs.readFileSync("src/index.mustache", "utf8");
+  template = fs.readFileSync(config.template, "utf8");
   mustache.escape = function (string) {
     return String(string).replace(/[&<>"']/g, function (s) {
-      return entityMap[s];
+      return config.entityMap[s];
     });
   };
   mustache.parse(template);
@@ -110,9 +117,9 @@ request.get({
     d.path = "../";
     d.year = year;
     fs.outputFileSync(
-      "dist/" + year + "/index.html",
+      config.dest + year + "/" + config.html,
       mustache.render(template, d)
     );
   });
-  fs.outputFileSync("dist/index.html", mustache.render(template, data));
+  fs.outputFileSync(config.dest + config.html, mustache.render(template, data));
 });
