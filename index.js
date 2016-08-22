@@ -74,7 +74,7 @@ request.get({
   }
 
   if (!config.force && newData.length === 0) {
-    return;
+    throw new Error("No new bookmark");
   }
 
   newData.reverse().forEach(function (item) {
