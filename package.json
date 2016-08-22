@@ -22,6 +22,6 @@
     "img": "cp -aux src/img/* dist/img/",
     "postbuild": "cd dist && git add --all && git commit -m \"Build\" && git push origin gh-pages",
     "rebuild": "npm run css && npm run img && npm run static && npm run build",
-    "static": "cp src/.nojekyll src/CNAME src/favicon.ico dist/"
+    "static": "cp -aux src/.nojekyll src/CNAME src/favicon.ico dist/"
   }
 }
