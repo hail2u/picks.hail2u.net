@@ -29,7 +29,7 @@ var data = {
   item: []
 };
 
-Object.merge(config, pit.get("pinboard.in"));
+Object.assign(config, pit.get("pinboard.in"));
 
 if (process.argv.length === 3 && process.argv[2] === "--force") {
   config.force = true;
