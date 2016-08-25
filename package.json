@@ -19,7 +19,7 @@
   "scripts": {
     "build": "node index.js",
     "css": "cp -aux src/css/* dist/css/",
-    "deploy": "npm run build && git push origin gh-pages",
+    "deploy": "npm run build && cd dist && git push origin gh-pages",
     "img": "cp -aux src/img/* dist/img/",
     "postbuild": "cd dist && git add --all && git commit -m \"Build\"",
     "rebuild": "npm run css && npm run img && npm run static && npm run build",
